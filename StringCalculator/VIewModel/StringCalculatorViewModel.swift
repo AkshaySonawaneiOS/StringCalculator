@@ -6,8 +6,35 @@
 //
 
 import Foundation
+
+class StringCalculatorViewModel {
+    
+    //    MARK:- Variable Declaration
+    private let stringCalculator: StringCalculator
+    var onResult: ((String) -> Void)?
+    var onError: ((String) -> Void)?
+    
+    init(stringCalculator: StringCalculator = StringCalculator()) {
+        self.stringCalculator = stringCalculator
+    }
+    
+    //    Function to Calculate String Input
+    func calculate(_ input: String)  {
+        do {
+            let sum = try stringCalculator.add(input)
+            onResult?("\(sum)")
+            onError?("")
+        } catch {
+            onResult?("")
+            onError?("\(error.localizedDescription)")
+        }
+    }
+}
+
+// String Calculation Logic with negative number errors
 class StringCalculator {
     
+    //    function to add string numbers and give result or error
     func add(_ numbers: String) throws -> Int {
         
         var input = numbers

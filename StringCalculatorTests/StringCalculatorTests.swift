@@ -9,14 +9,14 @@ import XCTest
 @testable import StringCalculator
 
 final class StringCalculatorTests: XCTestCase {
-
+    
     var calculator: StringCalculator!
     
     override func setUp() {
         super.setUp()
         calculator = StringCalculator()
     }
-
+    
     override func tearDown() {
         calculator = nil
         super.tearDown()
@@ -33,11 +33,11 @@ final class StringCalculatorTests: XCTestCase {
     func testTwoNumbersReturnSum() {
         XCTAssertEqual(try! calculator.add("3,4"), 7)
     }
-
+    
     func testNewLineAsDelimiter() {
         XCTAssertEqual(try! calculator.add("3\n4"), 7)
     }
-  
+    
     func testCustomDelimiterSemiColon() {
         XCTAssertEqual(try! calculator.add("//;\n3;4"), 7)
     }
